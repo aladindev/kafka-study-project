@@ -107,7 +107,9 @@ public class PizzaProducerCustomPartitioner {
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         //props.setProperty(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, "50000");
         //props.setProperty(ProducerConfig.ACKS_CONFIG, "0");
-
+        props.setProperty("custom.specialKey", "P001");
+        props.setProperty("partitioner.class", "CustomerPartitioner");
+        props.setProperty(ProducerConfig.PARTITIONER_CLASS_CONFIG, "com.example.kafka.CustomPartitioner");
 
         //KafkaProducer object creation
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(props);
