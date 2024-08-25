@@ -25,9 +25,9 @@ public class CustomPartitioner implements Partitioner {
              
         }
 
-        // auto.commit.sync = true / false 
+        // auto.commit.sync = true / false
 
-        int partitionIndex = 0;
+        int partitionIndex = 0; 
 
         return partitionIndex;
     }
