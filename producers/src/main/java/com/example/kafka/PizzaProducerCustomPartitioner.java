@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutionException;
 
 public class PizzaProducerCustomPartitioner {
     public static final Logger logger = LoggerFactory.getLogger(PizzaProducerCustomPartitioner.class.getName());
-
+ 
 
     public static void sendPizzaMessage(KafkaProducer<String, String> kafkaProducer,
                                         String topicName, int iterCount,

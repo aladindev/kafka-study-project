@@ -29,7 +29,7 @@ public class CustomPartitioner implements Partitioner {
 
         int partitionIndex = 0;
 
-        return partitionIndex; 
+        return partitionIndex;
     } 
 
     @Override
