@@ -25,13 +25,13 @@ public class PizzaProducerCustomPartitioner {
                                         int interIntervalMillis, int intervalMillis,
                                         int intervalCount, boolean sync) {
 
-        PizzaMessage pizzaMessage = new PizzaMessage();  // kakfa reader broker ISR  
+        PizzaMessage pizzaMessage = new PizzaMessage();  // kakfa reader broker ISR
         int iterSeq = 0;
         long seed = 2022;
         Random random = new Random(seed);
         Faker faker = Faker.instance(random);
 
-        long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();  
 
         while( iterSeq++ != iterCount ) {
             HashMap<String, String> pMessage = pizzaMessage.produce_msg(faker, random, iterSeq);
