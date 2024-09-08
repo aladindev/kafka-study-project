@@ -32,9 +32,9 @@ public class PizzaProducerCustomPartitioner {
         Faker faker = Faker.instance(random);
 
         long startTime = System.currentTimeMillis();
-        // kafka cdc debezium     
+        // kafka cdc debezium
 
-        while( iterSeq++ != iterCount ) {
+        while( iterSeq++ != iterCount ) { 
             HashMap<String, String> pMessage = pizzaMessage.produce_msg(faker, random, iterSeq);
             ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topicName,
                     pMessage.get("key"), pMessage.get("message"));
