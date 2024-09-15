@@ -1,121 +1,98 @@
 package com.example.kafka;
-
-import com.Config;
-import com.github.javafaker.Faker;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.common.serialization.StringSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.kafka.connect.source.SourceRecord;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Properties;
-import java.util.Random;
-import java.util.concurrent.ExecutionException;
+import java.util.Map;
+
+import com.Config;
+import org.apache.kafka.connect.source.SourceTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 public class SourceConnectorAPI {
     public static final Logger logger = LoggerFactory.getLogger(SourceConnectorAPI.class.getName());
 
+    public class MySourceTask extends SourceTask {
 
-    public static void sendPizzaMessage(KafkaProducer<String, String> kafkaProducer,
-                                        String topicName, int iterCount,
-                                        int interIntervalMillis, int intervalMillis,
-                                        int intervalCount, boolean sync) {
-
-        PizzaMessage pizzaMessage = new PizzaMessage();
-        int iterSeq = 0;
-        long seed = 2022;
-        Random random = new Random(seed);
-        Faker faker = Faker.instance(random);
-
-        long startTime = System.currentTimeMillis();
-
-        while( iterSeq++ != iterCount ) {
-            HashMap<String, String> pMessage = pizzaMessage.produce_msg(faker, random, iterSeq);
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topicName,
-                    pMessage.get("key"), pMessage.get("message"));
-            sendMessage(kafkaProducer, producerRecord, pMessage, sync);
-
-            if((intervalCount > 0) && (iterSeq % intervalCount == 0)) {
-                try {
-                    logger.info("####### IntervalCount:" + intervalCount +
-                            " intervalMillis:" + intervalMillis + " #########");
-                    Thread.sleep(intervalMillis);
-                } catch (InterruptedException e) {
-                    logger.error(e.getMessage());
-                }
-            }
-
-            if(interIntervalMillis > 0) {
-                try {
-                    logger.info("interIntervalMillis:" + interIntervalMillis);
-                    Thread.sleep(interIntervalMillis);
-                } catch (InterruptedException e) {
-                    logger.error(e.getMessage());
-                }
-            }
-
-        }
-        long endTime = System.currentTimeMillis();
-        long timeElapsed = endTime - startTime;
-
-        logger.info("{} millisecond elapsed for {} iterations", timeElapsed, iterCount);
-
-    }
-
-    public static void sendMessage(KafkaProducer<String, String> kafkaProducer,
-                                   ProducerRecord<String, String> producerRecord,
-                                   HashMap<String, String> pMessage, boolean sync) {
-        if(!sync) {
-            kafkaProducer.send(producerRecord, (metadata, exception) -> {
-                if (exception == null) {
-                    logger.info("async message:" + pMessage.get("key") + " partition:" + metadata.partition() +
-                            " offset:" + metadata.offset());
-                } else {
-                    logger.error("exception error from broker " + exception.getMessage());
-                }
-            });
-        } else {
-            try {
-                RecordMetadata metadata = kafkaProducer.send(producerRecord).get();
-                logger.info("sync message:" + pMessage.get("key") + " partition:" + metadata.partition() +
-                        " offset:" + metadata.offset());
-            } catch (ExecutionException e) {
-                logger.error(e.getMessage());
-            } catch (InterruptedException e) {
-                logger.error(e.getMessage());
-            }
-        }
-
-    }
-
-    public static void main(String[] args) throws IOException {
-
-        String topicName = "pizza-topic";
         Config config = new Config();
         String serverIp = config.getServerIp();
 
-        //KafkaProducer configuration setting
-        // null, "hello world"
+        public MySourceTask() throws IOException {
+        }
 
-        Properties props  = new Properties();
-        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serverIp);
-        props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        //props.setProperty(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, "50000");
-        //props.setProperty(ProducerConfig.ACKS_CONFIG, "0");
+        @Override
+        public String version() {
+            return null;
+        }
 
+        @Override
+        public void start(Map<String, String> props) {
 
-        //KafkaProducer object creation
-        KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(props);
+        }
 
-        sendPizzaMessage(kafkaProducer, topicName,
-                -1, 1000, 0, 0, false);
+        @Override
+        public List<SourceRecord> poll() {
+            // 데이터를 생성
+            List<SourceRecord> records = new ArrayList<>();
 
-        kafkaProducer.close();
+            // 예시 데이터
+            Map<String, String> value = new HashMap<>();
+            value.put("key", "value");
 
+            // SourceRecord 생성
+            SourceRecord record = new SourceRecord(
+                    Collections.singletonMap("source_partition", "1"),
+                    Collections.singletonMap("source_offset", "1"),
+                    "your-topic-name", // Kafka 토픽 이름
+                    null, // 키 (null일 경우 자동 생성)
+                    null, // 값
+                    value // 데이터
+            );
+
+            records.add(record);
+            return records;
+        }
+
+        @Override
+        public void stop() {
+
+        }
+    }
+
+    public static void main(String[] args) {
+        // Kafka Producer 설정
+        Properties props = new Properties();
+        props.put("bootstrap.servers", "localhost:9092"); // Kafka 브로커 주소
+        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+
+        // Kafka Producer 생성
+        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+
+        // 전송할 데이터
+        String topic = "test";
+        String key = "exampleKey";
+        String value = "{\"field1\":\"value1\", \"field2\":\"value2\"}"; // JSON 형식의 데이터
+
+        // ProducerRecord 생성
+        ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
+
+        // 데이터 전송
+        producer.send(record, (RecordMetadata metadata, Exception e) -> {
+            if (e != null) {
+                e.printStackTrace();
+            } else {
+                System.out.println("Sent record: " + metadata);
+            }
+        });
+
+        // Producer 종료
+        producer.close();
     }
 }
