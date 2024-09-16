@@ -69,7 +69,7 @@ public class SourceConnectorAPI {
         Config config = new Config();
         String serverIp = config.getServerIp();
 
-        // Kafka Producer 설정
+        // Kafka Producer 설정 
         Properties props = new Properties();
         props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -79,117 +79,133 @@ public class SourceConnectorAPI {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
         // 전송할 데이터
-        String topic = "dbz_.public.dbz_test";
+        String topic = "dbz_test";
 
         // JSON 형식의 데이터 (PostgreSQL에 적합한 형식으로)
         String key = "1"; // 고유 키
         String value = "{\n" +
-                "  \"key\": {\n" +
+                "  \"schema\": {\n" +
                 "    \"type\": \"struct\",\n" +
                 "    \"fields\": [\n" +
-                "      {\n" +
-                "        \"type\": \"int32\",\n" +
-                "        \"field\": \"id\"\n" +
-                "      }\n" +
+                "      {\"type\": \"int32\", \"optional\": false, \"field\": \"id\"},\n" +
+                "      {\"type\": \"string\", \"optional\": false, \"field\": \"field1\"},\n" +
+                "      {\"type\": \"int32\", \"optional\": false, \"field\": \"field2\"}\n" +
                 "    ],\n" +
                 "    \"optional\": false\n" +
                 "  },\n" +
-                "  \"value\": {\n" +
-                "    \"type\": \"struct\",\n" +
-                "    \"fields\": [\n" +
-                "      {\n" +
-                "        \"type\": \"struct\",\n" +
-                "        \"field\": \"before\",\n" +
-                "        \"fields\": [\n" +
-                "          {\n" +
-                "            \"type\": \"int32\",\n" +
-                "            \"field\": \"id\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"field1\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"field2\"\n" +
-                "          }\n" +
-                "        ],\n" +
-                "        \"optional\": true\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"type\": \"struct\",\n" +
-                "        \"field\": \"after\",\n" +
-                "        \"fields\": [\n" +
-                "          {\n" +
-                "            \"type\": \"int32\",\n" +
-                "            \"field\": \"id\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"field1\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"field2\"\n" +
-                "          }\n" +
-                "        ],\n" +
-                "        \"optional\": false\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"type\": \"struct\",\n" +
-                "        \"field\": \"source\",\n" +
-                "        \"fields\": [\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"version\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"connector\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"name\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"schema\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"string\",\n" +
-                "            \"field\": \"table\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"int64\",\n" +
-                "            \"field\": \"txId\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"int64\",\n" +
-                "            \"field\": \"lsn\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"boolean\",\n" +
-                "            \"field\": \"snapshot\"\n" +
-                "          },\n" +
-                "          {\n" +
-                "            \"type\": \"int64\",\n" +
-                "            \"field\": \"time\"\n" +
-                "          }\n" +
-                "        ],\n" +
-                "        \"optional\": false\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"type\": \"string\",\n" +
-                "        \"field\": \"op\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"type\": \"int64\",\n" +
-                "        \"field\": \"ts_ms\"\n" +
-                "      }\n" +
-                "    ],\n" +
-                "    \"optional\": false\n" +
+                "  \"payload\": {\n" +
+                "    \"id\": 1,\n" +
+                "    \"name\": \"test\",\n" +
+                "    \"age\": \"testvalue\"\n" +
                 "  }\n" +
-                "}\n"; // JSON 형식의 데이터
+                "}";
+//        String value = "{\n" +
+//                "  \"key\": {\n" +
+//                "    \"type\": \"struct\",\n" +
+//                "    \"fields\": [\n" +
+//                "      {\n" +
+//                "        \"type\": \"int32\",\n" +
+//                "        \"field\": \"id\"\n" +
+//                "      }\n" +
+//                "    ],\n" +
+//                "    \"optional\": false\n" +
+//                "  },\n" +
+//                "  \"value\": {\n" +
+//                "    \"type\": \"struct\",\n" +
+//                "    \"fields\": [\n" +
+//                "      {\n" +
+//                "        \"type\": \"struct\",\n" +
+//                "        \"field\": \"before\",\n" +
+//                "        \"fields\": [\n" +
+//                "          {\n" +
+//                "            \"type\": \"int32\",\n" +
+//                "            \"field\": \"id\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"field1\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"field2\"\n" +
+//                "          }\n" +
+//                "        ],\n" +
+//                "        \"optional\": true\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"type\": \"struct\",\n" +
+//                "        \"field\": \"after\",\n" +
+//                "        \"fields\": [\n" +
+//                "          {\n" +
+//                "            \"type\": \"int32\",\n" +
+//                "            \"field\": \"id\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"field1\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"field2\"\n" +
+//                "          }\n" +
+//                "        ],\n" +
+//                "        \"optional\": false\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"type\": \"struct\",\n" +
+//                "        \"field\": \"source\",\n" +
+//                "        \"fields\": [\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"version\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"connector\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"name\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"schema\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"string\",\n" +
+//                "            \"field\": \"table\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"int64\",\n" +
+//                "            \"field\": \"txId\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"int64\",\n" +
+//                "            \"field\": \"lsn\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"boolean\",\n" +
+//                "            \"field\": \"snapshot\"\n" +
+//                "          },\n" +
+//                "          {\n" +
+//                "            \"type\": \"int64\",\n" +
+//                "            \"field\": \"time\"\n" +
+//                "          }\n" +
+//                "        ],\n" +
+//                "        \"optional\": false\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"type\": \"string\",\n" +
+//                "        \"field\": \"op\"\n" +
+//                "      },\n" +
+//                "      {\n" +
+//                "        \"type\": \"int64\",\n" +
+//                "        \"field\": \"ts_ms\"\n" +
+//                "      }\n" +
+//                "    ],\n" +
+//                "    \"optional\": false\n" +
+//                "  }\n" +
+//                "}\n"; // JSON 형식의 데이터
 
         // ProducerRecord 생성
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
