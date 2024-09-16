@@ -83,7 +83,7 @@ public class SourceConnectorAPI {
 
         // JSON 형식의 데이터 (PostgreSQL에 적합한 형식으로)
         String key = "1"; // 고유 키
-        String value = "{\n" +
+        String value = "{\n" + 
                 "  \"schema\": {\n" +
                 "    \"type\": \"struct\",\n" +
                 "    \"fields\": [\n" +
