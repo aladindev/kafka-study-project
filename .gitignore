@@ -19,3 +19,13 @@ gradle-app.setting
 *.properties
 *.bin
 */build/*
+# Gradle 관련
+.gradle/
+!/.gradle/7.4/    # 특정 버전의 Gradle 캐시 제외
+*.lock             # 모든 lock 파일 무시
+
+# IntelliJ IDEA 관련
+.idea/
+
+# 모든 properties 파일 무시
+*.properties

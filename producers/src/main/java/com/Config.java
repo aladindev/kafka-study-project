@@ -1,21 +1,25 @@
 package com;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
     private String serverIp;
-    private Properties prop;
 
     public Config() throws IOException {
-        String propFile = "config/config.properties";
+        String propFile = "config.properties";  // 클래스패스에서 찾을 파일 이름
 
-        // 프로퍼티 파일 스트림에 담기
-        FileInputStream fis = new FileInputStream(propFile);
-        // 프로퍼티 파일 로딩
-        prop.load(new java.io.BufferedInputStream(fis));
+        // 클래스패스에서 프로퍼티 파일 스트림을 가져옴
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFile);
+
+        if (inputStream == null) {
+            throw new FileNotFoundException("Property file '" + propFile + "' not found in the classpath");
+        }
+
+        Properties prop = new Properties();
+        prop.load(inputStream);
 
         this.serverIp = prop.getProperty("SERVER_IP");
     }
@@ -23,4 +27,5 @@ public class Config {
     public String getServerIp() {
         return serverIp;
     }
+
 }

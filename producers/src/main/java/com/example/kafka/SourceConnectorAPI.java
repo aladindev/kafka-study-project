@@ -65,10 +65,13 @@ public class SourceConnectorAPI {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Config config = new Config();
+        String serverIp = config.getServerIp();
+
         // Kafka Producer 설정
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092"); // Kafka 브로커 주소
+        props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
@@ -76,9 +79,11 @@ public class SourceConnectorAPI {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
         // 전송할 데이터
-        String topic = "test";
-        String key = "exampleKey";
-        String value = "{\"field1\":\"value1\", \"field2\":\"value2\"}"; // JSON 형식의 데이터
+        String topic = "dbz_test";
+
+        // JSON 형식의 데이터 (PostgreSQL에 적합한 형식으로)
+        String key = "1"; // 고유 키
+        String value = "{\"id\": 1, \"field1\": \"value1\", \"field2\": \"value2\"}"; // JSON 형식의 데이터
 
         // ProducerRecord 생성
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
@@ -87,6 +92,7 @@ public class SourceConnectorAPI {
         producer.send(record, (RecordMetadata metadata, Exception e) -> {
             if (e != null) {
                 e.printStackTrace();
+                System.out.println("exeception : " + e.getMessage());
             } else {
                 System.out.println("Sent record: " + metadata);
             }
