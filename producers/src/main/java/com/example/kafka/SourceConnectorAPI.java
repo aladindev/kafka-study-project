@@ -2,6 +2,7 @@ package com.example.kafka;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.connect.source.SourceRecord;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import com.Config;
 import org.apache.kafka.connect.source.SourceTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.*;
 
@@ -72,9 +74,8 @@ public class SourceConnectorAPI {
         // Kafka Producer 설정 
         Properties props = new Properties();
         props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
-        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("value.serializer", "io.confluent.kafka.serializers.KafkaJsonSerializer");
-
+        props.put("key.serializer", StringSerializer.class);
+        props.put("value.serializer", JsonSerializer.class);
 
         // Kafka Producer 생성
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
@@ -96,8 +97,8 @@ public class SourceConnectorAPI {
                 "  },\n" +
                 "  \"payload\": {\n" +
                 "    \"id\": 1,\n" +
-                "    \"name\": \"test\",\n" +
-                "    \"age\": \"testvalue\"\n" +
+                "    \"field1\": \"test\",\n" +
+                "    \"field2\": \"testvalue\"\n" +
                 "  }\n" +
                 "}";
 //        String value = "{\n" +

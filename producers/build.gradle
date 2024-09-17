@@ -25,6 +25,12 @@ dependencies {
     // https://mvnrepository.com/artifact/io.confluent/kafka-json-serializer
     implementation 'io.confluent:kafka-json-serializer:7.6.0'
 
+    // https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
+    implementation 'org.springframework.kafka:spring-kafka:3.2.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0' // 필요한 버전으로 변경
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.0' // 필요한 버전으로 변경
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.0' // 필요한 버전으로 변경
+
 
 }
 
