@@ -76,7 +76,7 @@ public class SourceConnectorAPI {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         // Kafka Producer 생성
-        KafkaProducer<String, String> producer = new KafkaProducer<>(props);    
+        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
         // 전송할 데이터
         String topic = "dbz_test";
