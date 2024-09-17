@@ -73,7 +73,8 @@ public class SourceConnectorAPI {
         Properties props = new Properties();
         props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("value.serializer", "io.confluent.kafka.JsonSerializer");
+
 
         // Kafka Producer 생성
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
@@ -89,7 +90,7 @@ public class SourceConnectorAPI {
                 "    \"fields\": [\n" +
                 "      {\"type\": \"int32\", \"optional\": false, \"field\": \"id\"},\n" +
                 "      {\"type\": \"string\", \"optional\": false, \"field\": \"field1\"},\n" +
-                "      {\"type\": \"int32\", \"optional\": false, \"field\": \"field2\"}\n" +
+                "      {\"type\": \"string\", \"optional\": false, \"field\": \"field2\"}\n" +
                 "    ],\n" +
                 "    \"optional\": false\n" +
                 "  },\n" +

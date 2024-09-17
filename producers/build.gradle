@@ -22,6 +22,10 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.kafka/connect-api
     implementation 'org.apache.kafka:connect-api:3.5.2'
 
+    // https://mvnrepository.com/artifact/io.confluent/kafka-json-serializer
+    implementation 'io.confluent:kafka-json-serializer:7.6.0'
+
+
 }
 
 test {
