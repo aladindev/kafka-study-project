@@ -78,7 +78,7 @@ public class SourceConnectorAPI {
         props.put("value.serializer", JsonSerializer.class);
 
         // Kafka Producer 생성
-        KafkaProducer<String, YourJsonClass> producer = new KafkaProducer<>(props);
+        KafkaProducer<String, TestJsonClass> producer = new KafkaProducer<>(props);
 
         // 전송할 데이터
         String topic = "dbz_test";
@@ -211,13 +211,13 @@ public class SourceConnectorAPI {
 
         // ProducerRecord 생성
         // JSON 객체 생성
-        YourJsonClass jsonData = new YourJsonClass();
+        TestJsonClass jsonData = new TestJsonClass();
         jsonData.setId(1);
         jsonData.setField1("test");
         jsonData.setField2("testvalue");
 
 // ProducerRecord 생성 및 전송
-        ProducerRecord<String, YourJsonClass> record = new ProducerRecord<>(topic, key, jsonData);
+        ProducerRecord<String, TestJsonClass> record = new ProducerRecord<>(topic, key, jsonData);
 //        producer.send(record);
 //        producer.close();
 

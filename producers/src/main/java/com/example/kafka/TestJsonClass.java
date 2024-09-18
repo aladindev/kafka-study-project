@@ -1,6 +1,6 @@
 package com.example.kafka;
 
-public class YourJsonClass {
+public class TestJsonClass {
     private int id;
     private String field1;
     private String field2;
