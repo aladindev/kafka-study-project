@@ -69,6 +69,79 @@ public class SourceConnectorAPI {
         }
     }
 
+    public static void main(String[] args) {
+        import org.apache.avro.Schema;
+import org.apache.avro.generic.GenericData;
+import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.io.DatumWriter;
+import org.apache.avro.io.Encoder;
+import org.apache.avro.io.EncoderFactory;
+import org.apache.avro.specific.SpecificDatumWriter;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.apache.kafka.common.serialization.ByteArraySerializer;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+        public class AvroProducerExample {
+            public static void main(String[] args) throws IOException {
+                Config config = new Config();
+                String serverIp = config.getServerIp();
+
+                // Kafka Producer 설정
+                Properties props = new Properties();
+                props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
+                props.put("key.serializer", StringSerializer.class);
+                props.put("value.serializer", ByteArraySerializer.class); // Avro는 바이트 배열로 직렬화
+
+                // Kafka Producer 생성
+                KafkaProducer<String, byte[]> producer = new KafkaProducer<>(props);
+
+                // 전송할 데이터
+                String topic = "dbz_test";
+
+                // Avro 스키마 로드
+                String schemaString = "{\n" +
+                        "    \"type\": \"record\",\n" +
+                        "    \"name\": \"DbzTest\",\n" +
+                        "    \"fields\": [\n" +
+                        "        {\"name\": \"id\", \"type\": \"string\"},\n" +
+                        "        {\"name\": \"field1\", \"type\": \"string\"},\n" +
+                        "        {\"name\": \"field2\", \"type\": \"string\"}\n" +
+                        "    ]\n" +
+                        "}";
+                Schema schema = new Schema.Parser().parse(schemaString);
+
+                // Avro 레코드 생성
+                GenericRecord record = new GenericData.Record(schema);
+                record.put("id", "10001");
+                record.put("field1", "TEST Field1");
+                record.put("field2", "TEST Field2");
+
+                // Avro 레코드를 바이트 배열로 직렬화
+                byte[] serializedRecord = serializeAvroRecord(schema, record);
+
+                // ProducerRecord 생성 및 전송
+                ProducerRecord<String, byte[]> producerRecord = new ProducerRecord<>(topic, "1", serializedRecord);
+                producer.send(producerRecord);
+
+                producer.close();
+            }
+
+            private static byte[] serializeAvroRecord(Schema schema, GenericRecord record) throws IOException {
+                DatumWriter<GenericRecord> datumWriter = new SpecificDatumWriter<>(schema);
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                Encoder encoder = EncoderFactory.get().binaryEncoder(out, null);
+                datumWriter.write(record, encoder);
+                encoder.flush();
+                return out.toByteArray();
+            }
+        }
+
+    }
 
 //    public static void main(String[] args) throws IOException {
 //        Config config = new Config();
