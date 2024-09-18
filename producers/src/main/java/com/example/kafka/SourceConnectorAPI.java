@@ -101,6 +101,36 @@ public class SourceConnectorAPI {
                 "    \"field2\": \"testvalue\"\n" +
                 "  }\n" +
                 "}";
+
+        // ProducerRecord 생성
+        // JSON 객체 생성
+        TestJsonClass jsonData = new TestJsonClass();
+        jsonData.setId(1);
+        jsonData.setField1("test");
+        jsonData.setField2("testvalue");
+
+// ProducerRecord 생성 및 전송
+        ProducerRecord<String, TestJsonClass> record = new ProducerRecord<>(topic, key, jsonData);
+//        producer.send(record);
+//        producer.close();
+
+        //ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
+
+        // 데이터 전송
+        producer.send(record, (RecordMetadata metadata, Exception e) -> {
+            if (e != null) {
+                e.printStackTrace();
+                System.out.println("exeception : " + e.getMessage());
+            } else {
+                System.out.println("Sent record: " + metadata);
+            }
+        });
+
+        // Producer 종료
+        producer.close();
+    }
+}
+
 //        String value = "{\n" +
 //                "  \"key\": {\n" +
 //                "    \"type\": \"struct\",\n" +
@@ -208,33 +238,4 @@ public class SourceConnectorAPI {
 //                "    \"optional\": false\n" +
 //                "  }\n" +
 //                "}\n"; // JSON 형식의 데이터
-
-        // ProducerRecord 생성
-        // JSON 객체 생성
-        TestJsonClass jsonData = new TestJsonClass();
-        jsonData.setId(1);
-        jsonData.setField1("test");
-        jsonData.setField2("testvalue");
-
-// ProducerRecord 생성 및 전송
-        ProducerRecord<String, TestJsonClass> record = new ProducerRecord<>(topic, key, jsonData);
-//        producer.send(record);
-//        producer.close();
-
-        //ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
-
-        // 데이터 전송
-        producer.send(record, (RecordMetadata metadata, Exception e) -> {
-            if (e != null) {
-                e.printStackTrace();
-                System.out.println("exeception : " + e.getMessage());
-            } else {
-                System.out.println("Sent record: " + metadata);
-            }
-        });
-
-        // Producer 종료
-        producer.close();
-    }
-}
 
