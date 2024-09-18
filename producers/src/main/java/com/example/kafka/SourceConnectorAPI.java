@@ -107,7 +107,7 @@ public class SourceConnectorAPI {
                 "  ]\n" +
                 " },\n" +
                 " \"payload\":{\n" +
-                "   \"id\":1,\n" +
+                "   \"id\":\"1\",\n" +
                 "   \"field1\":\"test\",\n" +
                 "   \"field2\":\"testValue\"\n" +
                 " }\n" +
@@ -122,7 +122,7 @@ public class SourceConnectorAPI {
 //        jsonData.setField2("testvalue");
 
         // ProducerRecord 생성 및 전송
-        ProducerRecord<String, String> record = new ProducerRecord<>(topic, jsonObject.toString());
+        ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, jsonObject.toString());
 //        ProducerRecord<String, TestJsonClass> record = new ProducerRecord<>(topic, key, jsonData);
         //ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
 
