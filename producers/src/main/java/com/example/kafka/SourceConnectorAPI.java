@@ -69,76 +69,79 @@ public class SourceConnectorAPI {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        Config config = new Config();
-        String serverIp = config.getServerIp();
 
-        // Kafka Producer 설정 
-        Properties props = new Properties();
-        props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
-        props.put("key.serializer", StringSerializer.class);
-//        props.put("value.serializer", JsonSerializer.class);
-        props.put("value.serializer", StringSerializer.class);
-
-        // Kafka Producer 생성
-        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
-
-        // 전송할 데이터
-        String topic = "dbz_test";
-
-        // JSON 형식의 데이터 (PostgreSQL에 적합한 형식으로)
-        String key = "1"; // 고유 키
-        String value = "{\n" +
-                "\"schema\":{\n" +
-                "  \"type\":\"struct\",\n" +
-                "  \"fields\":[\n" +
-                "     {\n" +
-                "        \"field\":\"id\",\n" +
-                "        \"type\":\"string\"\n" +
-                "     },\n" +
-                "     {\n" +
-                "        \"field\":\"field1\",\n" +
-                "        \"type\":\"string\"\n" +
-                "     },\n" +
-                "     {\n" +
-                "        \"field\":\"field2\",\n" +
-                "        \"type\":\"string\"\n" +
-                "     }\n" +
-                "  ]\n" +
-                " },\n" +
-                " \"payload\":{\n" +
-                "   \"id\":\"1\",\n" +
-                "   \"field1\":\"test\",\n" +
-                "   \"field2\":\"testValue\"\n" +
-                " }\n" +
-                "}";
-
-        JSONObject jsonObject = new JSONObject(value);
-        // ProducerRecord 생성
-        // JSON 객체 생성
-//        TestJsonClass jsonData = new TestJsonClass();
-//        jsonData.setId(1);
-//        jsonData.setField1("test");
-//        jsonData.setField2("testvalue");
-
-        // ProducerRecord 생성 및 전송
-        ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, jsonObject.toString());
-//        ProducerRecord<String, TestJsonClass> record = new ProducerRecord<>(topic, key, jsonData);
-        //ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
-
-        // 데이터 전송
-        producer.send(record, (RecordMetadata metadata, Exception e) -> {
-            if (e != null) {
-                e.printStackTrace();
-                System.out.println("exeception : " + e.getMessage());
-            } else {
-                System.out.println("Sent record: " + metadata);
-            }
-        });
-
-        // Producer 종료
-        producer.close();
-    }
+//    public static void main(String[] args) throws IOException {
+//        Config config = new Config();
+//        String serverIp = config.getServerIp();
+//
+//        // Kafka Producer 설정
+//        Properties props = new Properties();
+//        props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
+//        props.put("key.serializer", StringSerializer.class);
+////        props.put("value.serializer", JsonSerializer.class);
+//        props.put("value.serializer", StringSerializer.class);
+//
+//        // Kafka Producer 생성
+//        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+//
+//        // 전송할 데이터
+//        String topic = "dbz_test";
+//
+//        // JSON 형식의 데이터 (PostgreSQL에 적합한 형식으로)
+//        String key = "1"; // 고유 키
+//        String value = "{\n" +
+//                "    \"schema\": {\n" +
+//                "        \"type\": \"struct\",\n" +
+//                "        \"name\": \"dbz_test\",\n" +
+//                "        \"optional\": false,\n" +
+//                "        \"fields\": [{\n" +
+//                "                \"field\": \"id\",\n" +
+//                "                \"optional\": false,\n" +
+//                "                \"type\": \"string\"\n" +
+//                "            }, {\n" +
+//                "                \"field\": \"field1\",\n" +
+//                "                \"optional\": false,\n" +
+//                "                \"type\": \"string\"\n" +
+//                "            }, {\n" +
+//                "                \"field\": \"field2\",\n" +
+//                "                \"optional\": false,\n" +
+//                "                \"type\": \"string\"\n" +
+//                "            }\n" +
+//                "        ]\n" +
+//                "    },\n" +
+//                "    \"payload\": {\n" +
+//                "        \"id\": \"10001\",\n" +
+//                "        \"field1\": \"TEST Field1\",\n" +
+//                "        \"field2\": \"TEST Field2\"\n" +
+//                "    }\n" +
+//                "}";
+//
+//        JSONObject jsonObject = new JSONObject(value);
+//        // ProducerRecord 생성
+//        // JSON 객체 생성
+////        TestJsonClass jsonData = new TestJsonClass();
+////        jsonData.setId(1);
+////        jsonData.setField1("test");
+////        jsonData.setField2("testvalue");
+//
+//        // ProducerRecord 생성 및 전송
+//        ProducerRecord<String, String> record = new ProducerRecord<>(topic, "1", jsonObject.toString());
+////        ProducerRecord<String, TestJsonClass> record = new ProducerRecord<>(topic, key, jsonData);
+//        //ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);
+//
+//        // 데이터 전송
+//        producer.send(record, (RecordMetadata metadata, Exception e) -> {
+//            if (e != null) {
+//                e.printStackTrace();
+//                System.out.println("exeception : " + e.getMessage());
+//            } else {
+//                System.out.println("Sent record: " + metadata);
+//            }
+//        });
+//
+//        // Producer 종료
+//        producer.close();
+//    }
 }
 
 //        String value = "{\n" +
