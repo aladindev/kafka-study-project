@@ -80,7 +80,8 @@ public class SourceConnectorAPI {
     }
 
     public static void main(String[] args) throws IOException {
-        String serverIp = "localhost:9092"; // Kafka 브로커 주소
+        Config config = new Config();
+        String serverIp = config.getServerIp();
 
         // Kafka Producer 설정
         Properties props = new Properties();
@@ -129,6 +130,7 @@ public class SourceConnectorAPI {
                 .put("field2", record.get("field2"))
         );
 
+        System.out.println(jsonPayload.toString());
         // ProducerRecord 생성 및 전송
         ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, "1", jsonPayload.toString());
         producer.send(producerRecord);
