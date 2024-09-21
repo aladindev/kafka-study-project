@@ -86,11 +86,11 @@ public class SourceConnectorAPI {
         // Kafka Producer 설정
         Properties props = new Properties();
         props.put("bootstrap.servers", serverIp);
-        props.put("key.serializer", StringSerializer.class);
-        props.put("value.serializer", StringSerializer.class); // JSON 문자열로 전송
+        props.put("key.serializer", StringSerializer.class.getName());
+        props.put("value.serializer", KafkaAvroSerializer.class.getName()); // Avro 직렬화기 사용
 
         // Kafka Producer 생성
-        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+        KafkaProducer<String, GenericRecord> producer = new KafkaProducer<>(props);
 
         // 전송할 데이터
         String topic = "dbz_test";
@@ -113,31 +113,74 @@ public class SourceConnectorAPI {
         record.put("field1", "TEST Field1");
         record.put("field2", "TEST Field2");
 
-        // JSON 포맷으로 변환
-        JSONObject jsonPayload = new JSONObject();
-        jsonPayload.put("schema", new JSONObject()
-                .put("type", "struct")
-                .put("name", "dbz_test")
-                .put("optional", false)
-                .put("fields", new JSONArray()
-                        .put(new JSONObject().put("field", "id").put("optional", false).put("type", "string"))
-                        .put(new JSONObject().put("field", "field1").put("optional", false).put("type", "string"))
-                        .put(new JSONObject().put("field", "field2").put("optional", false).put("type", "string"))
-                ));
-        jsonPayload.put("payload", new JSONObject()
-                .put("id", record.get("id"))
-                .put("field1", record.get("field1"))
-                .put("field2", record.get("field2"))
-        );
-
-        System.out.println(jsonPayload.toString());
         // ProducerRecord 생성 및 전송
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, "1", jsonPayload.toString());
+        ProducerRecord<String, GenericRecord> producerRecord = new ProducerRecord<>(topic, "1", record);
         producer.send(producerRecord);
 
         // Producer 종료
         producer.close();
     }
+
+
+//    public static void main(String[] args) throws IOException {
+//        Config config = new Config();
+//        String serverIp = config.getServerIp();
+//
+//        // Kafka Producer 설정
+//        Properties props = new Properties();
+//        props.put("bootstrap.servers", serverIp);
+//        props.put("key.serializer", StringSerializer.class);
+//        props.put("value.serializer", StringSerializer.class); // JSON 문자열로 전송
+//
+//        // Kafka Producer 생성
+//        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+//
+//        // 전송할 데이터
+//        String topic = "dbz_test";
+//
+//        // Avro 스키마 정의
+//        String schemaString = "{\n" +
+//                "    \"type\": \"record\",\n" +
+//                "    \"name\": \"DbzTest\",\n" +
+//                "    \"fields\": [\n" +
+//                "        {\"name\": \"id\", \"type\": \"string\"},\n" +
+//                "        {\"name\": \"field1\", \"type\": \"string\"},\n" +
+//                "        {\"name\": \"field2\", \"type\": \"string\"}\n" +
+//                "    ]\n" +
+//                "}";
+//        Schema schema = new Schema.Parser().parse(schemaString);
+//
+//        // Avro 레코드 생성
+//        GenericRecord record = new GenericData.Record(schema);
+//        record.put("id", "10001");
+//        record.put("field1", "TEST Field1");
+//        record.put("field2", "TEST Field2");
+//
+//        // JSON 포맷으로 변환
+//        JSONObject jsonPayload = new JSONObject();
+//        jsonPayload.put("schema", new JSONObject()
+//                .put("type", "struct")
+//                .put("name", "dbz_test")
+//                .put("optional", false)
+//                .put("fields", new JSONArray()
+//                        .put(new JSONObject().put("field", "id").put("optional", false).put("type", "string"))
+//                        .put(new JSONObject().put("field", "field1").put("optional", false).put("type", "string"))
+//                        .put(new JSONObject().put("field", "field2").put("optional", false).put("type", "string"))
+//                ));
+//        jsonPayload.put("payload", new JSONObject()
+//                .put("id", record.get("id"))
+//                .put("field1", record.get("field1"))
+//                .put("field2", record.get("field2"))
+//        );
+//
+//        System.out.println(jsonPayload.toString());
+//        // ProducerRecord 생성 및 전송
+//        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, "1", jsonPayload.toString());
+//        producer.send(producerRecord);
+//
+//        // Producer 종료
+//        producer.close();
+//    }
 
     private static byte[] serializeAvroRecord(Schema schema, GenericRecord record) throws IOException {
         DatumWriter<GenericRecord> datumWriter = new SpecificDatumWriter<>(schema);
