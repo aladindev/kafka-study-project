@@ -1,5 +1,6 @@
 package com.example.kafka;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
