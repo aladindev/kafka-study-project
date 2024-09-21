@@ -30,12 +30,15 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.0' // 필요한 버전으로 변경
     implementation 'org.json:json:20210307'
 
-    // https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer
+//    // https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer
 //    implementation 'io.confluent:kafka-avro-serializer:7.4.1'
 //    // https://mvnrepository.com/artifact/io.confluent/kafka-schema-registry-client
 //    implementation 'io.confluent:kafka-schema-registry-client:7.4.1'
 //    // https://mvnrepository.com/artifact/org.apache.avro/avro
 //    implementation 'org.apache.avro:avro:1.11.3'
+//    // https://mvnrepository.com/artifact/io.confluent/kafka-schema-registry
+//    implementation 'io.confluent:kafka-schema-registry:7.4.1'
+
 
 
 
