@@ -151,6 +151,7 @@ public class SourceConnectorAPI {
 //                "}";
 //        Schema schema = new Schema.Parser().parse(schemaString);
 //
+
 //        // Avro 레코드 생성
 //        GenericRecord record = new GenericData.Record(schema);
 //        record.put("id", "10001");
