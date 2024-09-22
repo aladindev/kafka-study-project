@@ -1,7 +1,6 @@
 package com.example.kafka;
 
 import com.Config;
-import com.github.javafaker.Faker;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;

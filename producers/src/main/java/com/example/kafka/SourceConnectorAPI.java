@@ -1,5 +1,4 @@
 package com.example.kafka;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
@@ -10,8 +9,6 @@ import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.connect.source.SourceRecord;
 
