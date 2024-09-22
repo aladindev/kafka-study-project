@@ -373,4 +373,3 @@ public class SourceConnectorAPI {
 //                "    \"optional\": false\n" +
 //                "  }\n" +
 //                "}\n"; // JSON 형식의 데이터
-
