@@ -86,12 +86,13 @@ public class SourceConnectorAPI {
         props.put("bootstrap.servers", serverIp);
         props.put("key.serializer", StringSerializer.class.getName());
         props.put("value.serializer", KafkaAvroSerializer.class.getName()); // Avro 직렬화기 사용
+        props.put("schema.registry.url", );
 
         // Kafka Producer 생성
         KafkaProducer<String, GenericRecord> producer = new KafkaProducer<>(props);
 
         // 전송할 데이터
-        String topic = "dbz_test";
+        String topic = "dbz_test_2";
 
         // Avro 스키마 정의
         String schemaString = "{\n" +
