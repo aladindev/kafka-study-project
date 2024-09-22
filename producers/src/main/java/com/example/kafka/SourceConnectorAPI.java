@@ -80,13 +80,14 @@ public class SourceConnectorAPI {
     public static void main(String[] args) throws IOException {
         Config config = new Config();
         String serverIp = config.getServerIp();
+        String schemaRgistryUrl = config.getSchemaRgistryUrl();
 
         // Kafka Producer 설정
         Properties props = new Properties();
         props.put("bootstrap.servers", serverIp);
         props.put("key.serializer", StringSerializer.class.getName());
         props.put("value.serializer", KafkaAvroSerializer.class.getName()); // Avro 직렬화기 사용
-        props.put("schema.registry.url", );
+        props.put("schema.registry.url", "http://" + schemaRgistryUrl);
 
         // Kafka Producer 생성
         KafkaProducer<String, GenericRecord> producer = new KafkaProducer<>(props);

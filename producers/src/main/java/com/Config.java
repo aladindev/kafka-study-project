@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class Config {
     private String serverIp;
-    private String schemaRgstryUrl;
+    private String schemaRgistryUrl;
 
     public Config() throws IOException {
         String propFile = "config.properties";  // 클래스패스에서 찾을 파일 이름
@@ -23,12 +23,12 @@ public class Config {
         prop.load(inputStream);
 
         this.serverIp = prop.getProperty("SERVER_IP");
-        this.schemaRgstryUrl = prop.getProperty("SCHEMA_REGISTRY_URL");
+        this.schemaRgistryUrl = prop.getProperty("SCHEMA_REGISTRY_URL");
     }
 
     public String getServerIp() {
         return serverIp;
     }
-    public String getSchemaRgstryUrl() { return schemaRgstryUrl; }
+    public String getSchemaRgistryUrl() { return schemaRgistryUrl; }
 
 }
