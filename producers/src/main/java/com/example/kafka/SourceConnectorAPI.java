@@ -33,7 +33,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         Config config = new Config();
         String serverIp = config.getServerIp();
 
-        public MySourceTask() throws IOException {
+        public MySourceTask() throws IOException { 
         }
 
         @Override
