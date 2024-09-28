@@ -136,54 +136,7 @@ public class SourceConnectorAPI {
 
         // Producer 종료
         producer.close();
-    }  
-
-//    public static void main(String[] args) throws IOException {
-//        Config config = new Config();
-//        String serverIp = config.getServerIp();
-//        String schemaRgistryUrl = config.getSchemaRgistryUrl();
-//
-//        // Kafka Producer 설정
-//        Properties props = new Properties();
-//        props.put("bootstrap.servers", serverIp);
-//        props.put("key.serializer", StringSerializer.class.getName());
-//        props.put("value.serializer", KafkaAvroSerializer.class.getName()); // Avro 직렬화기 사용
-//        props.put("schema.registry.url", "http://" + schemaRgistryUrl);
-//
-//        // Kafka Producer 생성
-//        KafkaProducer<String, GenericRecord> producer = new KafkaProducer<>(props);
-//
-//        // 전송할 데이터
-//        String topic = "dbz_test_2";
-//
-//        // Avro 스키마 정의
-//        String schemaString = "{\n" +
-//                "    \"type\": \"record\",\n" +
-//                "    \"name\": \"DbzTest\",\n" +
-//                "    \"fields\": [\n" +
-//                "        {\"name\": \"id\", \"type\": \"string\"},\n" +
-//                "        {\"name\": \"field1\", \"type\": \"string\"},\n" +
-//                "        {\"name\": \"field2\", \"type\": \"string\"}\n" +
-//                "    ]\n" +
-//                "}";
-//        Schema schema = new Schema.Parser().parse(schemaString);
-//
-//        // Avro 레코드 생성
-//        GenericRecord record = new GenericData.Record(schema);
-//        record.put("id", "10001");
-//        record.put("field1", "TEST Field1");
-//        record.put("field2", "TEST Field2");
-//
-//        // ProducerRecord 생성 및 전송
-//        ProducerRecord<String, GenericRecord> producerRecord = new ProducerRecord<>(topic, "1", record);
-//        producer.send(producerRecord);
-//
-//        // Producer 종료
-//        producer.close();
-//    }
-
-
-
+    }
 
     private static byte[] serializeAvroRecord(Schema schema, GenericRecord record) throws IOException {
         DatumWriter<GenericRecord> datumWriter = new SpecificDatumWriter<>(schema);
