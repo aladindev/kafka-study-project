@@ -136,7 +136,7 @@ public class SourceConnectorAPI {
 
         // Producer 종료
         producer.close();
-    }
+    }  
 
 //    public static void main(String[] args) throws IOException {
 //        Config config = new Config();
