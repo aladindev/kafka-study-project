@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public class SourceConnectorAPI {
+public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka Topic -> Postgres Sink Connector -> Postgres
     public static final Logger logger = LoggerFactory.getLogger(SourceConnectorAPI.class.getName());
 
     public class MySourceTask extends SourceTask {
