@@ -126,34 +126,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         return out.toByteArray();
     }
 }
-//                "        \"name\": \"dbz_test\",\n" +
-//                "        \"optional\": false,\n" +
-//                "        \"fields\": [{\n" +
-//                "                \"field\": \"id\",\n" +
-//                "                \"optional\": false,\n" +
-//                "                \"type\": \"string\"\n" +
-//                "            }, {\n" +
-//                "                \"field\": \"field1\",\n" +
-//                "                \"optional\": false,\n" +
-//                "                \"type\": \"string\"\n" +
-//                "            }, {\n" +
-//                "                \"field\": \"field2\",\n" +
-//                "                \"optional\": false,\n" +
-//                "                \"type\": \"string\"\n" +
-//                "            }\n" +
-//                "        ]\n" +
-//                "    },\n" +
-//                "    \"payload\": {\n" +
-//                "        \"id\": \"10001\",\n" +
-//                "        \"field1\": \"TEST Field1\",\n" +
-//                "        \"field2\": \"TEST Field2\"\n" +
-//                "    }\n" +
-//                "}";
-//
-//        JSONObject jsonObject = new JSONObject(value);
-//        // ProducerRecord 생성
-//        // JSON 객체 생성
-////        TestJsonClass jsonData = new TestJsonClass();
 ////        jsonData.setId(1);
 ////        jsonData.setField1("test");
 ////        jsonData.setField2("testvalue");
