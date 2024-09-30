@@ -110,28 +110,12 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
 
         System.out.println(jsonPayload.toString());
         // ProducerRecord 생성 및 전송
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, "00001", jsonPayload.toString());
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic,  jsonPayload.toString());
         producer.send(producerRecord);
 
         // Producer 종료
         producer.close();
     }
-//    public static void main(String[] args) throws IOException {
-//        Config config = new Config();
-//        String serverIp = config.getServerIp();
-//        String schemaRgistryUrl = config.getSchemaRgistryUrl();
-//
-//        // Kafka Producer 설정
-//        Properties props = new Properties();
-//        props.put("bootstrap.servers", serverIp);
-//        props.put("key.serializer", StringSerializer.class.getName());
-//        props.put("value.serializer", KafkaAvroSerializer.class.getName()); // Avro 직렬화기 사용
-//        props.put("schema.registry.url", "http://" + schemaRgistryUrl);
-//
-//        // Kafka Producer 생성
-//        KafkaProducer<String, GenericRecord> producer = new KafkaProducer<>(props);
-//
-//        // 전송할 데이터
 //        String topic = "dbz_test_2";
 //
 //        // Avro 스키마 정의
