@@ -65,7 +65,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                     value // 데이터
             );
 
-            records.add(record);
+            records.add(record);  
             return records;
         }
 
