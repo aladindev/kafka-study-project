@@ -126,38 +126,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         return out.toByteArray();
     }
 }
-//                "            \"field\": \"field2\"\n" +
-//                "          }\n" +
-//                "        ],\n" +
-//                "        \"optional\": true\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"type\": \"struct\",\n" +
-//                "        \"field\": \"after\",\n" +
-//                "        \"fields\": [\n" +
-//                "          {\n" +
-//                "            \"type\": \"int32\",\n" +
-//                "            \"field\": \"id\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"field1\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"field2\"\n" +
-//                "          }\n" +
-//                "        ],\n" +
-//                "        \"optional\": false\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"type\": \"struct\",\n" +
-//                "        \"field\": \"source\",\n" +
-//                "        \"fields\": [\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"version\"\n" +
-//                "          },\n" +
 //                "          {\n" +
 //                "            \"type\": \"string\",\n" +
 //                "            \"field\": \"connector\"\n" +
