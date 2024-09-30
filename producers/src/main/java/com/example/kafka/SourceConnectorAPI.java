@@ -116,30 +116,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         // Producer 종료
         producer.close();
     }
-//        String topic = "dbz_test_2";
-//
-//        // Avro 스키마 정의
-//        String schemaString = "{\n" +
-//                "    \"type\": \"record\",\n" +
-//                "    \"name\": \"DbzTest\",\n" +
-//                "    \"fields\": [\n" +
-//                "        {\"name\": \"id\", \"type\": \"string\"},\n" +
-//                "        {\"name\": \"field1\", \"type\": \"string\"},\n" +
-//                "        {\"name\": \"field2\", \"type\": \"string\"}\n" +
-//                "    ]\n" +
-//                "}";
-//        Schema schema = new Schema.Parser().parse(schemaString);
-//
-//        // Avro 레코드 생성
-//        GenericRecord record = new GenericData.Record(schema);
-//        record.put("id", "10001");
-//        record.put("field1", "TEST Field1");
-//        record.put("field2", "TEST Field2");
-//
-//        // ProducerRecord 생성 및 전송
-//        ProducerRecord<String, GenericRecord> producerRecord = new ProducerRecord<>(topic, "1", record);
-//        producer.send(producerRecord);
-//
 //        // Producer 종료
 //        producer.close();
 //    }
