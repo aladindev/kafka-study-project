@@ -65,7 +65,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                     value // 데이터
             );
 
-            records.add(record);  
+            records.add(record);
             return records;
         }
 
@@ -91,25 +91,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         // 전송할 데이터
         String topic = "dbz_test";
 
-        // Avro 스키마 정의
-        String schemaString = "{\n" +
-                "    \"type\": \"record\",\n" +
-                "    \"name\": \"DbzTest\",\n" +
-                "    \"fields\": [\n" +
-                "        {\"name\": \"id\", \"type\": \"string\"},\n" +
-                "        {\"name\": \"field1\", \"type\": \"string\"},\n" +
-                "        {\"name\": \"field2\", \"type\": \"string\"}\n" +
-                "    ]\n" +
-                "}";
-        Schema schema = new Schema.Parser().parse(schemaString);
-
-
-        // Avro 레코드 생성
-        GenericRecord record = new GenericData.Record(schema);
-        record.put("id", "10001");
-        record.put("field1", "TEST Field1");
-        record.put("field2", "TEST Field2");
-
         // JSON 포맷으로 변환
         JSONObject jsonPayload = new JSONObject();
         jsonPayload.put("schema", new JSONObject()
@@ -122,14 +103,14 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                         .put(new JSONObject().put("field", "field2").put("optional", false).put("type", "string"))
                 ));
         jsonPayload.put("payload", new JSONObject()
-                .put("id", record.get("id"))
-                .put("field1", record.get("field1"))
-                .put("field2", record.get("field2"))
+                .put("id", "00001")
+                .put("field1", "TEST Field1")
+                .put("field2", "TEST Field2")
         );
 
         System.out.println(jsonPayload.toString());
         // ProducerRecord 생성 및 전송
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, record.get("id").toString(), jsonPayload.toString());
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic, "00001", jsonPayload.toString());
         producer.send(producerRecord);
 
         // Producer 종료
