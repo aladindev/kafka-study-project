@@ -126,46 +126,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         return out.toByteArray();
     }
 }
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"connector\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"name\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"schema\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"table\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"int64\",\n" +
-//                "            \"field\": \"txId\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"int64\",\n" +
-//                "            \"field\": \"lsn\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"boolean\",\n" +
-//                "            \"field\": \"snapshot\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"int64\",\n" +
-//                "            \"field\": \"time\"\n" +
-//                "          }\n" +
-//                "        ],\n" +
-//                "        \"optional\": false\n" +
-//                "      },\n" +
-//                "      {\n" +
-//                "        \"type\": \"string\",\n" +
-//                "        \"field\": \"op\"\n" +
-//                "      },\n" +
-//                "      {\n" +
 //                "        \"type\": \"int64\",\n" +
 //                "        \"field\": \"ts_ms\"\n" +
 //                "      }\n" +
