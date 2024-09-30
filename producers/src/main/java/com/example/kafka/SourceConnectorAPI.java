@@ -126,10 +126,3 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         return out.toByteArray();
     }
 }
-//                "        \"type\": \"int64\",\n" +
-//                "        \"field\": \"ts_ms\"\n" +
-//                "      }\n" +
-//                "    ],\n" +
-//                "    \"optional\": false\n" +
-//                "  }\n" +
-//                "}\n"; // JSON 형식의 데이터
