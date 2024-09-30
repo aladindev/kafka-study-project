@@ -116,9 +116,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         // Producer 종료
         producer.close();
     }
-//        // Producer 종료
-//        producer.close();
-//    }
 
 
 
