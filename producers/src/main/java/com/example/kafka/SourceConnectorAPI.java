@@ -127,36 +127,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
     }
 }
 
-
-//        String value = "{\n" +
-//                "  \"key\": {\n" +
-//                "    \"type\": \"struct\",\n" +
-//                "    \"fields\": [\n" +
-//                "      {\n" +
-//                "        \"type\": \"int32\",\n" +
-//                "        \"field\": \"id\"\n" +
-//                "      }\n" +
-//                "    ],\n" +
-//                "    \"optional\": false\n" +
-//                "  },\n" +
-//                "  \"value\": {\n" +
-//                "    \"type\": \"struct\",\n" +
-//                "    \"fields\": [\n" +
-//                "      {\n" +
-//                "        \"type\": \"struct\",\n" +
-//                "        \"field\": \"before\",\n" +
-//                "        \"fields\": [\n" +
-//                "          {\n" +
-//                "            \"type\": \"int32\",\n" +
-//                "            \"field\": \"id\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"field1\"\n" +
-//                "          },\n" +
-//                "          {\n" +
-//                "            \"type\": \"string\",\n" +
-//                "            \"field\": \"field2\"\n" +
 //                "          }\n" +
 //                "        ],\n" +
 //                "        \"optional\": true\n" +
