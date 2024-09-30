@@ -126,28 +126,6 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         return out.toByteArray();
     }
 }
-//    public static void main(String[] args) throws IOException {
-//        Config config = new Config();
-//        String serverIp = config.getServerIp();
-//
-//        // Kafka Producer 설정
-//        Properties props = new Properties();
-//        props.put("bootstrap.servers", serverIp); // Kafka 브로커 주소
-//        props.put("key.serializer", StringSerializer.class);
-////        props.put("value.serializer", JsonSerializer.class);
-//        props.put("value.serializer", StringSerializer.class);
-//
-//        // Kafka Producer 생성
-//        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
-//
-//        // 전송할 데이터
-//        String topic = "dbz_test";
-//
-//        // JSON 형식의 데이터 (PostgreSQL에 적합한 형식으로)
-//        String key = "1"; // 고유 키
-//        String value = "{\n" +
-//                "    \"schema\": {\n" +
-//                "        \"type\": \"struct\",\n" +
 //                "        \"name\": \"dbz_test\",\n" +
 //                "        \"optional\": false,\n" +
 //                "        \"fields\": [{\n" +
