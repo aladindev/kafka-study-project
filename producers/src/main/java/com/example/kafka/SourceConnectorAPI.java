@@ -114,7 +114,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         producer.send(producerRecord);
 
         // Producer 종료
-        producer.close(); 
+        producer.close();
     }
 
     private static byte[] serializeAvroRecord(Schema schema, GenericRecord record) throws IOException {
@@ -125,4 +125,4 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         encoder.flush();
         return out.toByteArray();
     }
-}        
+}          
