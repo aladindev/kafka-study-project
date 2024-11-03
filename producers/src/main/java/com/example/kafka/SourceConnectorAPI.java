@@ -67,7 +67,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
 
             records.add(record);
             return records;
-        }  
+        }
 
         @Override
         public void stop() {
@@ -104,8 +104,8 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                 ));
         jsonPayload.put("payload", new JSONObject()
                 .put("id", "00001")
-                .put("field1", "TEST Field1")
-                .put("field2", "TEST Field2")
+                .put("field1", "Update Field1")
+                .put("field2", "Update Field2")
         );
 
         System.out.println(jsonPayload.toString());
