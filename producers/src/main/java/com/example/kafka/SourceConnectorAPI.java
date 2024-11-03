@@ -104,8 +104,8 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                 ));
         jsonPayload.put("payload", new JSONObject()
                 .put("id", "00001")
-                .put("field1", "restart9 Field1")
-                .put("field2", "restart9 Field2")
+                .put("field1", "restart10 Field1")
+                .put("field2", "restart10 Field2")
         );
 
         System.out.println(jsonPayload.toString());
