@@ -81,7 +81,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
 
         // Kafka Producer 설정
         Properties props = new Properties();
-        props.put("bootstrap.servers", serverIp);   
+        props.put("bootstrap.servers", serverIp);
         props.put("key.serializer", StringSerializer.class);
         props.put("value.serializer", StringSerializer.class); // JSON 문자열로 전송
 
@@ -104,7 +104,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                 ));
         jsonPayload.put("payload", new JSONObject()
                 .put("id", "00001")
-                .put("field1", "TEST Field1")
+                .put("field1", "TEST Field1")  
                 .put("field2", "TEST Field2")
         );
 
