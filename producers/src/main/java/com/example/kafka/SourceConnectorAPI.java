@@ -91,10 +91,10 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         // 전송할 데이터
         String topic = "dbz_test";
 
-        // JSON 포맷으로 변환   
+        // JSON 포맷으로 변환
         JSONObject jsonPayload = new JSONObject();
         jsonPayload.put("schema", new JSONObject()
-                .put("type", "struct")
+                .put("type", "struct")  
                 .put("name", "dbz_test")
                 .put("optional", false)
                 .put("fields", new JSONArray()
