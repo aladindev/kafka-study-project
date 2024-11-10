@@ -76,7 +76,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
     }
 
     public static void main(String[] args) throws IOException {
-        Config config = new Config();
+        Config config = new Config();   
         String serverIp = config.getServerIp();
 
         // Kafka Producer 설정
