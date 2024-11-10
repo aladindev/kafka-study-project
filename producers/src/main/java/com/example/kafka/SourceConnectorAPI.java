@@ -76,7 +76,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
     }
 
     public static void main(String[] args) throws IOException {
-        Config config = new Config();   
+        Config config = new Config();
         String serverIp = config.getServerIp();
 
         // Kafka Producer 설정
@@ -91,7 +91,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         // 전송할 데이터
         String topic = "dbz_test";
 
-        // JSON 포맷으로 변환
+        // JSON 포맷으로 변환   
         JSONObject jsonPayload = new JSONObject();
         jsonPayload.put("schema", new JSONObject()
                 .put("type", "struct")
