@@ -101,8 +101,8 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                         .put(new JSONObject().put("field", "id").put("optional", false).put("type", "string"))
                         .put(new JSONObject().put("field", "field1").put("optional", false).put("type", "string"))
                         .put(new JSONObject().put("field", "field2").put("optional", false).put("type", "string"))
-                ));     
-        jsonPayload.put("payload", new JSONObject()
+                ));
+        jsonPayload.put("payload", new JSONObject() 
                 .put("id", "00001")
                 .put("field1", "restart11 Field1")
                 .put("field2", "restart11 Field2")
