@@ -93,8 +93,8 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
 
         // JSON 포맷으로 변환
         JSONObject jsonPayload = new JSONObject();
-        jsonPayload.put("schema", new JSONObject()
-                .put("type", "struct")  
+        jsonPayload.put("schema", new JSONObject()  
+                .put("type", "struct")
                 .put("name", "dbz_test")
                 .put("optional", false)
                 .put("fields", new JSONArray()
