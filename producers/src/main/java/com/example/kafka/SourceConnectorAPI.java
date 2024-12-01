@@ -22,7 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-  
+
 import java.util.*;
 
 public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka Topic -> Postgres Sink Connector -> Postgres
