@@ -28,7 +28,7 @@ import java.util.*;
 public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka Topic -> Postgres Sink Connector -> Postgres
     public static final Logger logger = LoggerFactory.getLogger(SourceConnectorAPI.class.getName());
 
-    public class MySourceTask extends SourceTask {
+    public class MySourceTask extends SourceTask {   
 
         Config config = new Config();
         String serverIp = config.getServerIp();
