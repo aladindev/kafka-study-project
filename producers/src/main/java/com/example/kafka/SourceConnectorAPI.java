@@ -28,7 +28,7 @@ import java.util.*;
 public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka Topic -> Postgres Sink Connector -> Postgres
     public static final Logger logger = LoggerFactory.getLogger(SourceConnectorAPI.class.getName());
 
-    public class MySourceTask extends SourceTask {   
+    public class MySourceTask extends SourceTask {
 
         Config config = new Config();
         String serverIp = config.getServerIp();
@@ -108,7 +108,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
                 .put("field2", "restart11 Field2")
         );
     
-        System.out.println(jsonPayload.toString());
+        System.out.println(jsonPayload.toString());     
         // ProducerRecord 생성 및 전송
         ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic,  jsonPayload.toString());
         producer.send(producerRecord);
