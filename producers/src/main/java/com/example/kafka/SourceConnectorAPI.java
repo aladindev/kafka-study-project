@@ -112,7 +112,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         // ProducerRecord 생성 및 전송
         ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topic,  jsonPayload.toString());
         producer.send(producerRecord);
-     
+       
         // Producer 종료
         producer.close();
     }
