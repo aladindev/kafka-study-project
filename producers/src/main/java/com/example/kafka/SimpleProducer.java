@@ -17,7 +17,7 @@ public class SimpleProducer {
 
         String topicName = "simple-topic";
         //KafkaProducer configuration setting
-        // key:null, value:"hello world"   
+        // key:null, value:"hello world"       
         Properties props = new Properties();
         //bootstrap.servers, key.serializer.class, value.serializer.class  
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serverIp);
