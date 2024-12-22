@@ -23,10 +23,10 @@ public class SimpleProducer {
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serverIp);
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-
+   
         //KafkaProducer Object create
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(props);
-     
+
         //ProducerRecord Object create
         ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topicName, "hello world2");
 
