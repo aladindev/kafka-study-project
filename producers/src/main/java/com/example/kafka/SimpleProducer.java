@@ -15,7 +15,7 @@ public class SimpleProducer {
         Config config = new Config();
         String serverIp = config.getServerIp();
 
-        String topicName = "simple-topic";
+        String topicName = "simple-topic";   
         //KafkaProducer configuration setting
         // key:null, value:"hello world"
         Properties props = new Properties();
@@ -23,7 +23,7 @@ public class SimpleProducer {
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serverIp);
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-      
+
         //KafkaProducer Object create
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(props);
 
