@@ -19,7 +19,7 @@ public class SimpleProducer {
         //KafkaProducer configuration setting
         // key:null, value:"hello world"
         Properties props = new Properties();
-        //bootstrap.servers, key.serializer.class, value.serializer.class      
+        //bootstrap.servers, key.serializer.class, value.serializer.class
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serverIp);
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -27,7 +27,7 @@ public class SimpleProducer {
         //KafkaProducer Object create
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(props);
 
-        //ProducerRecord Object create
+        //ProducerRecord Object create   
         ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topicName, "hello world2");
 
         //KafkaProducer message send
