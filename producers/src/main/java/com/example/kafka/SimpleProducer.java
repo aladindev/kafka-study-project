@@ -36,5 +36,5 @@ public class SimpleProducer {
         kafkaProducer.flush(); // 배치로 수행되기 때문에 바로 메세지가 가지 않음 그런 처리. 버퍼에 있던 거 비우기
         kafkaProducer.close();
 
-    }                
+    }                     
 }
