@@ -124,5 +124,5 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         datumWriter.write(record, encoder);
         encoder.flush();
         return out.toByteArray();
-    }
-}                
+    }  
+}
