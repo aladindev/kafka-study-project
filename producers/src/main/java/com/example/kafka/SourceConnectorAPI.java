@@ -116,7 +116,7 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         // Producer 종료
         producer.close();
     }
-  
+
     private static byte[] serializeAvroRecord(Schema schema, GenericRecord record) throws IOException {
         DatumWriter<GenericRecord> datumWriter = new SpecificDatumWriter<>(schema);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -125,4 +125,4 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         encoder.flush();
         return out.toByteArray();
     }
-}
+}   
