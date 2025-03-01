@@ -125,4 +125,4 @@ public class SourceConnectorAPI { // Oracle -> Oracle Source Connector -> Kafka 
         encoder.flush();
         return out.toByteArray();
     }
-}   
+}      
