@@ -18,7 +18,7 @@
 //
 //    public static void sendPizzaMessage(KafkaProducer<String, String> kafkaProducer,
 //                                        String topicName, int iterCount,
-//                                        int interIntervalMillis, int intervalMillis,
+//                                        int interIntervalMillis, int intervalMilli s,
 //                                        int intervalCount, boolean sync) {
 //
 //        PizzaMessage pizzaMessage = new PizzaMessage();
