@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class SimpleProducer {
     public static void main(String[] args) throws IOException {
-   
+     
         Config config = new Config();
         String serverIp = config.getServerIp();
 
